@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konvertor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+      <img src="Asset%201@3x%201.svg" alt="Logo">
+      <ul>
+        <li class="menuList1"><a  href="#">Банк</a></li>
+        <li><a href="#">Бизнес</a></li>
+        <li><a href="#">Инвестиции</a></li>
+        <li><a href="#">Страхование</a></li>
+        <li><a href="#">Мобиль</a></li>
+        <li><a href="#">Путешествия</a></li>
+        <li><a href="#">Развлечения</a></li>
+      </ul>
+    <div class="login-btn">Войти</div>
+  </div>
+  <main>
+    <h1>Конвертер валют онлайн</h1>
+    <div class="converter">
+      <div class="input-section">
+        <label class="main-text1" >У меня есть</label>
+        <div class="currency-selector" id="fromCurrency">
+          <button id="rub1" class="active" >RUB</button>
+          <button id="usd1" >USD</button>
+          <button id="eur1" >EUR</button>
+          <button id="gbp1" >GBP</button>
+        </div>
+        <div class="inputA">
+        <input type="text" class="amount" id="input1">
+        <p id="p1Value"></p>
+    </div>
+      </div>
+      <div class="output-section">
+        <label class="main-text1">Хочу приобрести</label>
+        <div class="currency-selector" id="toCurrency">
+          <button id="rub2" >RUB</button>
+          <button id="usd2" class="active" >USD</button>
+          <button id="eur2"  >EUR</button>
+          <button id="gpb2">GBP</button>
+        </div>
+        <div class="inputA">
+        <input type="text" class="amount" id="input2">
+        <p id="p2Value"></p>
+    </div>
+    </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

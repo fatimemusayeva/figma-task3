@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  .header {
+    font-family: "Roboto", serif;
+    display: flex;
+    width: 1600px;
+    padding: 10px 20px;
+    color: #959BA4;
+    /* padding: 10px 20px; */
+    background-color: #F5F5F6; 
+    position: relative; 
+
+  }
+  
+
+  
+  img {
+    width: 90px;
+    height: 25px;
+    margin-left: 140px;
+  }
+  
+   ul {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: #959BA4;
+    font-size: 14px;
+  }
+  .menuList1{
+    margin-left: 130px;
+    color:black;
+  }
+  
+  .login-btn {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 150px;
+  }
+  
+  main {
+    padding: 20px;
+    width: 1400px;
+    /* text-align: center; */
+
+  }
+  main h1{
+    margin-left: 360px;
+    font-size: 48px;
+    font-family:"Roboto", serif ;
+  }
+  .converter {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .input-section{
+   
+    padding: 20px;
+    border-radius: 10px;
+    width: 380px;
+    margin-left: 180px;
+  }
+  
+  .output-section {
+    padding: 20px;
+    border-radius: 10px;
+    width: 380px;
+    margin-left: 50px;
+    border-radius: 15px;
+
+  }
+  .currency-selector {
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .currency-selector button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .currency-selector .active {
+    background: #6a0dad;
+    color: #fff;
+    border: none;
+  }
+  
+  input{
+    padding-left: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    
+  }
+  .main-text1{
+    color: #9F9F9F;
+  }
+  .inputA p{
+    margin-top: -40px;
+    margin-left: 10px;
+    font-size: 19px;
+  }
+.amount{
+    width: 340px;
+    height: 150px;
+    font-size: 36px;
+    padding-bottom: 50px;
+}
+  
+  @media (max-width: 720px) {
+    .converter {
+      flex-direction: column;
+      gap: 20px;
+    }
+    img{
+        margin-left: 80px;
+    }
+    .menuList1{
+        margin-left: 60px;
+    }
+    main h1{
+        display: block;
+        display:flex ;
+        justify-content: center;
+        width: 600px;
+    }
+    .input-section{
+        margin: 0 auto;
+       
+    }
+    .login-btn{
+        margin-left:150px;
+    }
+
+    .output-section {
+        margin: auto;
+    }
+    .currency-selector {
+      flex-wrap: wrap;
+    }
+    }
+
+  
+#error-message {
+    color: white;  
+    background-color: #d9534f; 
+    padding: 40px;  
+    border-radius: 10px;  
+    font-size: 18px; 
+    font-weight: bold;  
+    text-align: center; 
+    margin:0 auto;  
+    width: 300px;
+    height: 100px; 
+  }
+  
+  #p1Value,#p2Value{
+    color: #959BA4;
+  }
