@@ -9,37 +9,28 @@
 
   .header {
     font-family: "Roboto", serif;
-    display: flex;
-    width: 1600px;
+    width:100%;
     padding: 10px 20px;
     color: #959BA4;
-    /* padding: 10px 20px; */
+    padding: 10px 20px;
     background-color: #F5F5F6; 
-    position: relative; 
 
   }
-  
-
   
   img {
     width: 90px;
     height: 25px;
-    margin-left: 140px;
+    margin-left: 5%;
   }
   
-   ul {
-    display: flex;
-    gap: 50px;
-    list-style: none;
-  }
-
-  a {
-    text-decoration: none;
+  p {
     color: #959BA4;
-    font-size: 14px;
+    font-size: 1em;
+    margin-left: 3%;
+    display: inline-block;
   }
   .menuList1{
-    margin-left: 130px;
+    margin-left:140px;
     color:black;
   }
   
@@ -48,17 +39,19 @@
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-left: 150px;
+    display: inline-block;
+    margin-left: 5%;
+
   }
   
   main {
     padding: 20px;
-    width: 1400px;
+    width: 100%;
     /* text-align: center; */
 
   }
   main h1{
-    margin-left: 360px;
+    margin-left: 20%;
     font-size: 48px;
     font-family:"Roboto", serif ;
   }
@@ -75,7 +68,7 @@
     padding: 20px;
     border-radius: 10px;
     width: 380px;
-    margin-left: 180px;
+  
   }
   
   .output-section {
@@ -111,16 +104,20 @@
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-
-    
+  
   }
+
+
+
   .main-text1{
     color: #9F9F9F;
   }
   .inputA p{
-    margin-top: -40px;
-    margin-left: 10px;
+    margin-left:-330px;
+    margin-top: 130px;
     font-size: 19px;
+    position: absolute;
+  
   }
 .amount{
     width: 340px;
@@ -128,30 +125,70 @@
     font-size: 36px;
     padding-bottom: 50px;
 }
+
   
-  @media (max-width: 720px) {
+
+
+
+@media (min-width: 1100px) and (max-width: 1280px) {
+.menuList1{
+  margin-left: 40px;
+}
+.login-btn{
+  margin-left: 30px;
+} 
+}
+
+@media (min-width: 990px) and (max-width: 1110px) {
+  .menuList1{
+    margin-left: 40px;
+  }
+  .login-btn{
+    margin-left: 30px;
+  }
+  p{
+    font-size: 14px;
+  } 
+  img{
+    width: 70px;
+    height: 20px;
+  }
+  }
+
+
+
+
+  @media (max-width: 990px) {
+   
+p{
+  font-size: 10px;
+
+}
+    img{
+      width: 50px;
+      height: 20px;
+      margin-left: 5%;
+    }
     .converter {
       flex-direction: column;
       gap: 20px;
     }
-    img{
-        margin-left: 80px;
-    }
+    
     .menuList1{
-        margin-left: 60px;
+        margin-left: 40px;
     }
     main h1{
         display: block;
         display:flex ;
         justify-content: center;
-        width: 600px;
     }
     .input-section{
         margin: 0 auto;
        
     }
     .login-btn{
-        margin-left:150px;
+        margin-left:20px;
+        font-size: 10px;
     }
 
     .output-section {
@@ -160,7 +197,37 @@
     .currency-selector {
       flex-wrap: wrap;
     }
+
     }
+
+
+ 
+
+    @media (min-width: 319px) and (max-width: 400px) {
+      .inputA p{
+        margin-left:-250px ;
+        font-size: 15px;
+      }
+      h1{
+        font-size: 25px;
+      }
+    img{
+      width: 50px;
+      height: 20px;
+      margin-left: 1%;
+    }
+    .input-section , .output-section{
+      width: 300px;
+    }
+    .amount{
+      width: 260px;
+    }
+    .login-btn{
+      margin-top: 10px;
+    }
+    }
+
+   
 
   
 #error-message {

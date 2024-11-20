@@ -1,3 +1,7 @@
+
+
+
+
 function activateButtons(sectionId) {
     const section = document.getElementById(sectionId);
     const buttons = section.querySelectorAll("button");
@@ -48,7 +52,6 @@ function activateButtons(sectionId) {
   });
   
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const fromCurrencyButtons = document.querySelectorAll("#fromCurrency button");
     const toCurrencyButtons = document.querySelectorAll("#toCurrency button");
@@ -59,12 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const input1 = document.getElementById("input1");
     const input2 = document.getElementById("input2");
 
+    let isInput1Active = true;
+
     fromCurrencyButtons.forEach((button) => {
         button.addEventListener("click", () => {
             fromCurrencyButtons.forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
             fromCurrency = button.textContent;
-            convertFromInput1();
+            if (isInput1Active) {
+                convertFromInput1();
+            } else {
+                convertFromInput2();
+            }
         });
     });
 
@@ -73,53 +82,64 @@ document.addEventListener("DOMContentLoaded", () => {
             toCurrencyButtons.forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
             toCurrency = button.textContent;
-            convertFromInput1();
+            if (isInput1Active) {
+                convertFromInput1();
+            } else {
+                convertFromInput2();
+            }
         });
     });
 
     input1.addEventListener("input", () => {
-        convertFromInput1();
+        isInput1Active = true;
+        if (input1.value.trim() === "") {
+            input2.value = ""; 
+        } else {
+            convertFromInput1();
+        }
     });
 
     input2.addEventListener("input", () => {
-        convertFromInput2();
+        isInput1Active = false;
+        if (input2.value.trim() === "") {
+            input1.value = ""; 
+        } else {
+            convertFromInput2();
+        }
     });
 
     const convertFromInput1 = () => {
-        const amount = parseFloat(input1.value) || 0;
-
-        if (amount > 0) {
             fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.conversion_rates && data.conversion_rates[toCurrency]) {
                         const rate = data.conversion_rates[toCurrency];
-                        input2.value = (amount * rate).toFixed(2);
+                        input2.value = (input1.value * rate).toFixed(5);
+                        if(input2.value==0.00){
+                            input2.value=0;
+                        }
                     }
                 })
                 .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
-        } else {
-            input2.value = "";
-        }
+        
     };
 
     const convertFromInput2 = () => {
-        const amount = parseFloat(input2.value) || 0;
-
-        if (amount > 0) {
             fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${toCurrency}`)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.conversion_rates && data.conversion_rates[fromCurrency]) {
                         const rate = data.conversion_rates[fromCurrency];
-                        input1.value = (amount * rate).toFixed(2);
+                        input1.value = (input2.value * rate).toFixed(5);
+                        if(input1.value==0.00){
+                            input1.value=0;
+                        }
                     }
                 })
                 .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
-        } else {
-            input1.value = "";
-        }
     };
+
+
 
     const updateConversionRate = () => {
         fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
