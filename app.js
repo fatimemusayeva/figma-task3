@@ -1,7 +1,4 @@
 
-
-
-
 function activateButtons(sectionId) {
     const section = document.getElementById(sectionId);
     const buttons = section.querySelectorAll("button");
@@ -13,6 +10,14 @@ function activateButtons(sectionId) {
       });
     });
   }
+
+  
+ let menu = document.querySelector(".navbar");
+ let showMenu = document.querySelector(".show-menu");
+ showMenu.addEventListener("click",()=>{
+    menu.classList.toggle("show")
+ })
+
   document.addEventListener("DOMContentLoaded", () => {
     const messageElement = document.createElement("p");
     messageElement.id = "error-message"; 
@@ -26,30 +31,32 @@ function activateButtons(sectionId) {
       document.body.appendChild(messageElement);
     });
   });
-  
-  document.addEventListener("click", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const inputs = document.querySelectorAll("input");
   
+
     inputs.forEach((input) => {
-      input.addEventListener("input", (event) => {
-        let value = input.value;
-  
-        value = value.replace(/,/g, ".");
-  
-        value = value.replace(/[^0-9.]/g, "");
-  
-        const parts = value.split(".");
-        if (parts.length > 2) {
-          value = parts[0] + "." + parts[1];
-        }
-  
-        if (parts[1] && parts[1].length > 5) {
-          value = parts[0] + "." + parts[1].substring(0, 5);
-        }
-          input.value = value;
-      });
+        input.addEventListener("input", (event) => {
+            let value = input.value;
+
+            value = value.replace(/,/g, ".");
+
+            value = value.replace(/[^0-9.]/g, "");
+
+            const parts = value.split(".");
+            if (parts.length > 2) {
+                value = parts[0] + "." + parts[1]; 
+            }
+
+            if (parts[1] && parts[1].length > 5) {
+                value = parts[0] + "." + parts[1].substring(0, 5);
+            }
+
+            input.value = value;
+        });
     });
-  });
+});
+
   
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -69,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fromCurrencyButtons.forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
             fromCurrency = button.textContent;
+            updateConversionRate();
             if (isInput1Active) {
                 convertFromInput1();
             } else {
@@ -82,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             toCurrencyButtons.forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
             toCurrency = button.textContent;
+            updateConversionRate();
             if (isInput1Active) {
                 convertFromInput1();
             } else {
@@ -92,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     input1.addEventListener("input", () => {
         isInput1Active = true;
-        if (input1.value.trim() === "") {
+        const value = input1.value.trim();
+        if (value === "," || value === ".") { 
             input2.value = ""; 
         } else {
             convertFromInput1();
@@ -101,7 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     input2.addEventListener("input", () => {
         isInput1Active = false;
-        if (input2.value.trim() === "") {
+        const value = input2.value.trim();
+        if (value === "," || value === ".") { 
             input1.value = ""; 
         } else {
             convertFromInput2();
@@ -109,37 +120,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const convertFromInput1 = () => {
-            fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.conversion_rates && data.conversion_rates[toCurrency]) {
-                        const rate = data.conversion_rates[toCurrency];
-                        input2.value = (input1.value * rate).toFixed(5);
-                        if(input2.value==0.00){
-                            input2.value=0;
-                        }
+        fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.conversion_rates && data.conversion_rates[toCurrency]) {
+                    const rate = data.conversion_rates[toCurrency];
+                    input2.value = (input1.value * rate).toFixed(5);
+                    if (input2.value == 0.00) {
+                        input2.value = 0;
                     }
-                })
-                .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
-        
+                }
+            })
+            .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
     };
 
     const convertFromInput2 = () => {
-            fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${toCurrency}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.conversion_rates && data.conversion_rates[fromCurrency]) {
-                        const rate = data.conversion_rates[fromCurrency];
-                        input1.value = (input2.value * rate).toFixed(5);
-                        if(input1.value==0.00){
-                            input1.value=0;
-                        }
+        fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${toCurrency}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.conversion_rates && data.conversion_rates[fromCurrency]) {
+                    const rate = data.conversion_rates[fromCurrency];
+                    input1.value = (input2.value * rate).toFixed(5);
+                    if (input1.value == 0.00) {
+                        input1.value = 0;
                     }
-                })
-                .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
+                }
+            })
+            .catch((error) => console.error("Valyuta çevrilmə xətası:", error));
     };
-
-
 
     const updateConversionRate = () => {
         fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
@@ -149,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const rateTo = data.conversion_rates[toCurrency];
                     const rateFrom = 1 / rateTo;
 
-                    document.getElementById("p1Value").innerText = `1 ${fromCurrency} = ${rateTo.toFixed(4)} ${toCurrency}`;
-                    document.getElementById("p2Value").innerText = `1 ${toCurrency} = ${rateFrom.toFixed(4)} ${fromCurrency}`;
+                    document.getElementById("p1Value").innerText = `1 ${fromCurrency} = ${rateTo.toFixed(5)} ${toCurrency}`;
+                    document.getElementById("p2Value").innerText = `1 ${toCurrency} = ${rateFrom.toFixed(5)} ${fromCurrency}`;
                 }
             })
             .catch((error) => console.error("Valyuta məlumatını yeniləmə xətası:", error));
@@ -175,6 +183,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     };
+
+    const handleInternetReconnect = () => {
+        if (isInput1Active) {
+            convertFromInput1();
+        } else {
+            convertFromInput2();
+        }
+        updateConversionRate();
+        console.clear()
+    };
+
+    window.addEventListener("online", handleInternetReconnect);
 
     setupCurrencySelectors();
     updateConversionRate();
