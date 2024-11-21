@@ -27,7 +27,7 @@ function activateButtons(sectionId) {
     });
   
     window.addEventListener('offline', () => {
-      messageElement.textContent = "Internet getmişdir"; 
+      messageElement.textContent = "Нет Интернета"; 
       document.body.appendChild(messageElement);
     });
   });
@@ -56,9 +56,6 @@ function activateButtons(sectionId) {
         });
     });
 });
-
-  
-
 document.addEventListener("DOMContentLoaded", () => {
     const fromCurrencyButtons = document.querySelectorAll("#fromCurrency button");
     const toCurrencyButtons = document.querySelectorAll("#toCurrency button");
@@ -99,27 +96,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
+
     input1.addEventListener("input", () => {
         isInput1Active = true;
-        const value = input1.value.trim();
+        let value = input1.value.trim();
         if (value === "," || value === ".") { 
             input2.value = ""; 
         } else {
+            while (value.length > 1 && value[0] === "0" && value[1] !== ".") {
+                value = value.slice(1); 
+            }
+            input1.value = value;
             convertFromInput1();
         }
     });
-
+    
     input2.addEventListener("input", () => {
         isInput1Active = false;
-        const value = input2.value.trim();
+        let value = input2.value.trim();
         if (value === "," || value === ".") { 
             input1.value = ""; 
         } else {
+            while (value.length > 1 && value[0] === "0" && value[1] !== ".") {
+                value = value.slice(1); 
+            }
+            input2.value = value;
             convertFromInput2();
         }
     });
 
+
+
+
     const convertFromInput1 = () => {
+        if (fromCurrency === toCurrency) {
+            input2.value = input1.value;
+            return;
+        }
         fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
             .then((response) => response.json())
             .then((data) => {
@@ -135,6 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const convertFromInput2 = () => {
+
+        if (fromCurrency === toCurrency) {
+            input1.value = input2.value;
+            return;
+        }
         fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${toCurrency}`)
             .then((response) => response.json())
             .then((data) => {
@@ -150,6 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const updateConversionRate = () => {
+
+        if (fromCurrency === toCurrency) {
+            document.getElementById("p1Value").innerText = `1 ${fromCurrency} = 1.00000 ${toCurrency}`;
+            document.getElementById("p2Value").innerText = `1 ${toCurrency} = 1.00000 ${fromCurrency}`;
+            return; 
+        }
+    
         fetch(`https://v6.exchangerate-api.com/v6/04954366fef251782db8ecb8/latest/${fromCurrency}`)
             .then((response) => response.json())
             .then((data) => {
@@ -199,3 +225,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCurrencySelectors();
     updateConversionRate();
 });
+

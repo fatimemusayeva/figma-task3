@@ -43,11 +43,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 55px;
+    gap:25px;
   }
   .menuList1{
-    /* margin-left:140px; */
-    color:black;
+        color:black;
   }
   
   .login-btn {
@@ -56,34 +55,31 @@
     padding: 10px 20px;
     border-radius: 5px;
     display: inline-block;
-    /* margin-left: 5%; */
 
   }
   
   main {
     padding: 20px;
     width: 100%;
-    /* text-align: center; */
 
   }
   main h1{
-    margin-left: 20%;
+    margin-left: 17%;
     font-size: 48px;
     font-family:"Roboto", serif ;
   }
   .converter {
     display: flex;
     justify-content: center;
-    gap: 40px;
     margin-top: 20px;
     flex-wrap: wrap;
   }
   
   .input-section{
-   
     padding: 20px;
     border-radius: 10px;
     width: 380px;
+    margin-left: -80px;
   
   }
   
@@ -91,7 +87,7 @@
     padding: 20px;
     border-radius: 10px;
     width: 380px;
-    margin-left: 50px;
+    margin-left: 100px;
     border-radius: 15px;
 
   }
@@ -148,11 +144,14 @@
 
 @media (min-width: 1100px) and (max-width: 1280px) {
 .menuList1{
-  margin-left: 30px;
+  margin-left: 28px;
 }
 .login-btn{
-  margin-left: 30px;
+  margin-left: 25px;
 } 
+li{
+  font-size: 15px;
+}
 }
 
 @media (min-width: 990px) and (max-width: 1110px) {
@@ -195,12 +194,9 @@ p{
       gap: 20px;
     }
     
-    .menuList1{
-        margin-left: 40px;
-    }
+
     main h1{
       font-size: 35px;
-        display: block;
         display:flex ;
         justify-content: center;
     }
@@ -220,20 +216,21 @@ p{
       flex-wrap: wrap;
     }
     .navbar{
+      width: 90px;
       display: none;
       padding: 10px 0;
       flex-direction: column;
+      justify-content: flex-end;
       position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: #fff;
+      top: 65px;
+margin-left: 75%;      
+background-color: #fff;
     }
     .navbar.show{
       display: flex;
     }
 .show-menu{
-  font-size: 15px;
+  font-size: 12px;
   display: block !important;
 
 }
@@ -258,6 +255,9 @@ p{
     .input-section , .output-section{
       width: 300px;
     }
+    .navbar{
+      margin-left: 70%;
+    }
     .amount{
       width: 260px;
     }
@@ -281,7 +281,7 @@ p{
 #error-message {
   display: flex;
   color: white;  
-  background-color: #d9534f; 
+  background-color: #b02621; 
   padding: 75px;  
   border-radius: 10px;  
   font-size: 18px; 
