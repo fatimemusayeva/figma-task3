@@ -127,8 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-
-
     const convertFromInput1 = () => {
         if (fromCurrency === toCurrency) {
             input2.value = input1.value;

@@ -242,7 +242,7 @@ background-color: #fff;
     @media (min-width: 319px) and (max-width: 400px) {
       .inputA p{
         margin-left:-250px ;
-        font-size: 15px;
+        font-size: 14px;
       }
       h1{
         font-size: 15px;
@@ -259,7 +259,7 @@ background-color: #fff;
       margin-left: 70%;
     }
     .amount{
-      width: 260px;
+      width: 250px;
     }
     .login-btn{
       margin-top: 10px;
