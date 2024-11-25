@@ -103,7 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let value = input1.value.trim();
         if (value === "," || value === ".") { 
             input2.value = ""; 
-        } else {
+        } 
+        if( value==="." )
+            {
+                input1.value="0."
+            }
+        else {
             while (value.length > 1 && value[0] === "0" && value[1] !== ".") {
                 value = value.slice(1); 
             }
@@ -117,7 +122,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let value = input2.value.trim();
         if (value === "," || value === ".") { 
             input1.value = ""; 
-        } else {
+        } 
+        if( value==="." )
+        {
+            input2.value="0."
+        }
+        
+        else {
             while (value.length > 1 && value[0] === "0" && value[1] !== ".") {
                 value = value.slice(1); 
             }
@@ -125,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             convertFromInput2();
         }
     });
+
 
 
     const convertFromInput1 = () => {

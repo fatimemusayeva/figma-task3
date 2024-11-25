@@ -263,6 +263,10 @@ background-color: #fff;
     }
     .login-btn{
       margin-top: 10px;
+
+    }
+    .p2Value, .p1Value{
+margin-left:20px ;
     }
     }
 
